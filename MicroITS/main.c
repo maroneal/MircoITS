@@ -137,7 +137,7 @@ int main(int argc, char * argv[])
 
 					printf("COMMAND : %x\n", mes.command);
 
-					if(mes.command == COMMAND_GET_TIME)
+					if(mes.command == COMMAND_GET_TIME)	// If the server wants to get the time of a round trip of a message between the two robots
 					{
 						printf("TIME ASKED\n");
 
@@ -145,41 +145,41 @@ int main(int argc, char * argv[])
 
 						socketMain = createSocket();
 
-						time = getTimeofTravel(socketMain, IP_LOCAL, &sa);
-						closeSocket(socketMain);
+						time = getTimeofTravel(socketMain, IP_LOCAL, &sa);	// Get the time of the round trip
+						closeSocket(socketMain);	// Close the socket
 
 
 						strcpy(buffer, "");
-						sprintf(buffer, "%d", (int)time);
+						sprintf(buffer, "%d", (int)time);	// Print the time of the round trip in the buffer
 						strcat(buffer, "\n");
 						// Close the socket
 
 
 
-						writePipe(fd2, buffer, SIZE_BUF);
+						writePipe(fd2, buffer, SIZE_BUF);	// Write the time into the pipe
 					}
-					else if (mes.command == COMMAND_GET_POSITION)
+					else if (mes.command == COMMAND_GET_POSITION)	// If the server wants to get the position of the other robot
 					{
 						printf("POSITION ASKED\n");
-						resetMessage(&mes);
+						resetMessage(&mes);	// Reset the message
 
 						strcpy(mes.wifiIp, IP_LOCAL);
-						mes.command = COMMAND_GET_POSITION;
-						serializeStructMessage(mes, buffer);
+						mes.command = COMMAND_GET_POSITION;	// Send the command "position" to the other robot for that he can send his position
+						serializeStructMessage(mes, buffer);	// Serialize the message to be able to send it through the socket
 
 						// Create the socket
 						socketMain = createSocket();
 
-						writeClientSocket(socketMain, &sa, buffer, sizeof(buffer));
-						readSocket(socketMain, buffer, sizeof(buffer));
+						writeClientSocket(socketMain, &sa, buffer, sizeof(buffer));	// Send the message through the socket
+						readSocket(socketMain, buffer, sizeof(buffer));	// Wait and read the socket for the message from the other robot
 
-						unserializeStructMessage(&mes, buffer, SIZE_BUF);
+						unserializeStructMessage(&mes, buffer, SIZE_BUF);	// Unserialize the string to get a message
 
 						strcpy(buffer, "");
-						sprintf(buffer, "%.1f,%.1f\n", mes.position.x, mes.position.y);
+						sprintf(buffer, "%.1f,%.1f\n", mes.position.x, mes.position.y);	// Write the position of the other robot in the buffer
 						closeSocket(socketMain);
 
-						writePipe(fd2, buffer, SIZE_BUF);
+						writePipe(fd2, buffer, SIZE_BUF);	// Write the position of the other robot into the pipe
 					}
 				}
 			}
@@ -255,43 +255,43 @@ int main(int argc, char * argv[])
 
                     unserializeStructMessage(&mes, buffer, SIZE_BUF);
 
-                    if(!strcmp(mes.wifiIp, IP_LOOPBACK))
+                    if(!strcmp(mes.wifiIp, IP_LOOPBACK))	// If the message comes from the python program
 					{
-						if(mes.command == COMMAND_NOTHING)
+						if(mes.command == COMMAND_NOTHING)	// If the command is nothing, then the python program only wants to send the position of the robot
 						{
-							position.x = mes.position.x;
+							position.x = mes.position.x;	// Storing of the position
 							position.y = mes.position.y;
 						}
 					}
-					else if(!strcmp(mes.wifiIp, IP_DIST))
+					else if(!strcmp(mes.wifiIp, IP_DIST))	// If the message comes from the other robot
 					{
-						if(mes.command == COMMAND_GET_TIME)
+						if(mes.command == COMMAND_GET_TIME)	// If the other robot wants to know the time of a round trip of a message
 						{
 							printf("GET TIME\n");
-							writeServerSocket(clientSocket, buffer, SIZE_BUF);
+							writeServerSocket(clientSocket, buffer, SIZE_BUF);	// The same message is sent to the other robot
 						}
-						else if(mes.command == COMMAND_GET_POSITION)
+						else if(mes.command == COMMAND_GET_POSITION)	// If the other robot wants to know the position of this robot
 						{
 							printf("GET POSITION\n");
-							resetMessage(&mes);
-							strcpy(buffer, IP_LOCAL);
-							mes.position.x = position.x;
+							resetMessage(&mes);	// Reset of the message
+							strcpy(buffer, IP_LOCAL);	// Copy our local IP address
+							mes.position.x = position.x;	// Store the position of the robot
 							mes.position.y = position.y;
-							serializeStructMessage(mes, buffer);
+							serializeStructMessage(mes, buffer);	// Serialiaze the message to be able to send it through the socket
 
-							writeServerSocket(clientSocket, buffer, SIZE_BUF);
+							writeServerSocket(clientSocket, buffer, SIZE_BUF);	// Write the message into the socket to send the message to the other robot
 						}
 					}
 
-					sendCommand(serial, mes.command);
-					resetMessage(&mes);
+					sendCommand(serial, mes.command);	// Send the command of the message to the
+					resetMessage(&mes);	// Reset the message to finish it clearly
 				}
 
-				//usleep(1000000);
+				//usleep(1000000);	// Wait necessary to be able for the program to work. Don't know why, surely because of the pipes which need latency
 				//printf("Time : %d\n", getTime());
-				/*if(getTime() >= timer + TIME_PERIOD_UPDATE)
+				/*if(getTime() >= timer + TIME_PERIOD_UPDATE)	// If it's time to store all the data in the file
 				{
-					char temp[100];
+					char temp[100];	// Store the current position in the buffer
 					strcpy(buffer, "");
 					sprintf(temp, "%.1f", position.x);
 					strcat(buffer, temp);
@@ -302,34 +302,32 @@ int main(int argc, char * argv[])
 					strcat(buffer, "\n");
 					printf("X : %.1f, Y : %.1f\n", position.x, position.y);
 
-					//system("/home/pi/Desktop/MicroITS/wifi_monitoring_oneshot.sh");
-					//writeFile("../log_oneshot.txt", buffer, SIZE_BUF);
+					//system("/home/pi/Desktop/MicroITS/wifi_monitoring_oneshot.sh");	// Write the wireless data (signal strength, quality, name, packets loast) into the file
+					//writeFile("../log_oneshot.txt", buffer, SIZE_BUF);	// Write the position of this robot in the file
 
 					strcpy(mes.wifiIp, IP_LOCAL);
-					mes.command = COMMAND_GET_POSITION;
-					serializeStructMessage(mes, buffer);
-
-					//writePipe(fd1, "POS", sizeof("POS"));
-					writePipe(fd1, buffer, SIZE_BUF);
-					sleep(1);
+					mes.command = COMMAND_GET_POSITION;	// Ask the position of the other robot
+					serializeStructMessage(mes, buffer);	// Serialize the message
+					writePipe(fd1, buffer, SIZE_BUF);	// Write the message in the pipe for the client process
+					sleep(1);	// Wait necessary to be able for the program to work. Don't know why, surely because of the pipes which need latency
 					//usleep(500000);
 					readPipe(fd2, buffer, SIZE_BUF);
 
-					writeFile("../log_oneshot.txt", buffer, SIZE_BUF);
+					writeFile("../log_oneshot.txt", buffer, SIZE_BUF);	// Write the position of the other robot in the file
 
 					strcpy(mes.wifiIp, IP_LOCAL);
-					mes.command = COMMAND_GET_TIME;
-					serializeStructMessage(mes, buffer);
+					mes.command = COMMAND_GET_TIME;	// Command to calculate the time of a round trip of a message between the two robots
+					serializeStructMessage(mes, buffer);	// Serialize the message
 
-					writePipe(fd1, buffer, SIZE_BUF);
-					sleep(1);
+					writePipe(fd1, buffer, SIZE_BUF);	// Write the message in the pipe for the client process
+					sleep(1);	// Wait necessary to be able for the program to work. Don't know why, surely because of the pipes which need latency
 					readPipe(fd2, buffer, SIZE_BUF);
 
-					writeFile("../log_oneshot.txt", buffer, SIZE_BUF);
+					writeFile("../log_oneshot.txt", buffer, SIZE_BUF);	// Write the time of a round trip of a message in the file
 
 					writeFile("../log_oneshot.txt", ";\n", sizeof(";\n"));
 
-					//timer = getTime();
+					//timer = getTime();	// Refresh the timer variable with the current time
 				}*/
 
 
