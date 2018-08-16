@@ -1,0 +1,56 @@
+# depslib dependency file v1.0
+1533822457 source:/home/pi/Desktop/MicroITS/MicroITS/manageFile.c
+	"manageFile.h"
+
+1533822457 /home/pi/Desktop/MicroITS/MicroITS/manageFile.h
+	<stdio.h>
+
+1533822457 source:/home/pi/Desktop/MicroITS/MicroITS/managePipe.c
+	"managePipe.h"
+
+1533822457 /home/pi/Desktop/MicroITS/MicroITS/managePipe.h
+	<unistd.h>
+	<string.h>
+	<stdio.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1533822457 source:/home/pi/Desktop/MicroITS/MicroITS/manageRobot.c
+	"manageRobot.h"
+
+1533822457 /home/pi/Desktop/MicroITS/MicroITS/manageRobot.h
+	<wiringPi.h>
+	<wiringSerial.h>
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	"manageNetwork.h"
+
+1533822457 /home/pi/Desktop/MicroITS/MicroITS/manageNetwork.h
+	<arpa/inet.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<sys/ioctl.h>
+	<stdlib.h>
+	<unistd.h>
+	<string.h>
+	<stdio.h>
+	<time.h>
+
+1533829134 source:/home/pi/Desktop/MicroITS/MicroITS/main.c
+	<stdio.h>
+	<stdlib.h>
+	<strings.h>
+	<signal.h>
+	<stdint.h>
+	<sys/types.h>
+	<wait.h>
+	<time.h>
+	"managePipe.h"
+	"manageNetwork.h"
+	"manageRobot.h"
+	"manageFile.h"
+
+1533828375 source:/home/pi/Desktop/MicroITS/MicroITS/manageNetwork.c
+	"manageNetwork.h"
+
