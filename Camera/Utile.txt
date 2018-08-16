@@ -1,0 +1,2 @@
+Ex copie de fichier : scp AutoDriving_V2.py pi@192.168.1.1:Desktop/MicroITS/Camera
+Connaître le port série utilisé : python -c "from pypozyx import *;print(get_first_pozyx_serial_port())"
