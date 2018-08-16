@@ -26,6 +26,7 @@
 #define TIME_PERIOD_UPDATE		1
 
 char end;
+//
 
 // Handler to get the signal SIGINT. It allows to have a clean exit by closing the sockets and the pipes and the serial communication
 void handler(int numSignal) {
