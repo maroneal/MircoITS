@@ -1,0 +1,12 @@
+D:\Documents\Visual Studio 2017\Sources\Repos\ConnectToRaspberry\ConnectToRaspberry\bin\Debug\ConnectToRaspberry.exe.config
+D:\Documents\Visual Studio 2017\Sources\Repos\ConnectToRaspberry\ConnectToRaspberry\bin\Debug\ConnectToRaspberry.exe
+D:\Documents\Visual Studio 2017\Sources\Repos\ConnectToRaspberry\ConnectToRaspberry\bin\Debug\ConnectToRaspberry.pdb
+D:\Documents\Visual Studio 2017\Sources\Repos\ConnectToRaspberry\ConnectToRaspberry\obj\Debug\ConnectToRaspberry.csprojAssemblyReference.cache
+D:\Documents\Visual Studio 2017\Sources\Repos\ConnectToRaspberry\ConnectToRaspberry\obj\Debug\ConnectToRaspberry.Form1.resources
+D:\Documents\Visual Studio 2017\Sources\Repos\ConnectToRaspberry\ConnectToRaspberry\obj\Debug\ConnectToRaspberry.Properties.Resources.resources
+D:\Documents\Visual Studio 2017\Sources\Repos\ConnectToRaspberry\ConnectToRaspberry\obj\Debug\ConnectToRaspberry.csproj.GenerateResource.cache
+D:\Documents\Visual Studio 2017\Sources\Repos\ConnectToRaspberry\ConnectToRaspberry\obj\Debug\ConnectToRaspberry.csproj.CoreCompileInputs.cache
+D:\Documents\Visual Studio 2017\Sources\Repos\ConnectToRaspberry\ConnectToRaspberry\obj\Debug\ConnectToRaspberry.exe
+D:\Documents\Visual Studio 2017\Sources\Repos\ConnectToRaspberry\ConnectToRaspberry\obj\Debug\ConnectToRaspberry.pdb
+D:\Documents\Visual Studio 2017\Sources\Repos\ConnectToRaspberry\ConnectToRaspberry\bin\Debug\ManagedWifi.dll
+D:\Documents\Visual Studio 2017\Sources\Repos\ConnectToRaspberry\ConnectToRaspberry\obj\Debug\ConnectToRaspberry.csproj.CopyComplete

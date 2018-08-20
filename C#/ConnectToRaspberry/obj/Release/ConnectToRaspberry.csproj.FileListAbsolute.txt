@@ -1,0 +1,9 @@
+D:\Documents\Visual Studio 2017\Sources\Repos\ConnectToRaspberry\ConnectToRaspberry\bin\Release\ConnectToRaspberry.exe.config
+D:\Documents\Visual Studio 2017\Sources\Repos\ConnectToRaspberry\ConnectToRaspberry\bin\Release\ConnectToRaspberry.exe
+D:\Documents\Visual Studio 2017\Sources\Repos\ConnectToRaspberry\ConnectToRaspberry\bin\Release\ConnectToRaspberry.pdb
+D:\Documents\Visual Studio 2017\Sources\Repos\ConnectToRaspberry\ConnectToRaspberry\obj\Release\ConnectToRaspberry.Form1.resources
+D:\Documents\Visual Studio 2017\Sources\Repos\ConnectToRaspberry\ConnectToRaspberry\obj\Release\ConnectToRaspberry.Properties.Resources.resources
+D:\Documents\Visual Studio 2017\Sources\Repos\ConnectToRaspberry\ConnectToRaspberry\obj\Release\ConnectToRaspberry.csproj.GenerateResource.cache
+D:\Documents\Visual Studio 2017\Sources\Repos\ConnectToRaspberry\ConnectToRaspberry\obj\Release\ConnectToRaspberry.csproj.CoreCompileInputs.cache
+D:\Documents\Visual Studio 2017\Sources\Repos\ConnectToRaspberry\ConnectToRaspberry\obj\Release\ConnectToRaspberry.exe
+D:\Documents\Visual Studio 2017\Sources\Repos\ConnectToRaspberry\ConnectToRaspberry\obj\Release\ConnectToRaspberry.pdb
